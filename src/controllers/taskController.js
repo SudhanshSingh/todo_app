@@ -1,7 +1,7 @@
 const taskModel = require("../models/taskModel");
 const validator = require("../validators/validations");
 const schedule = require("node-schedule");
-const sendMail = require("../util/util");
+const sendMail = require("../util/sendEmail");
 const userModel = require("../models/userModel");
 
 const createTask = async function (req, res) {
@@ -231,10 +231,10 @@ const findAlarms = async function (req, res) {
   // // Log the new time to the console
   //console.log(newTime);
   let alarms = await taskModel.find({
-    alarmDate: { $gt: currentTime, $lte: newTime },
+    alarmDate: { $gt: currentTime },
     hasAlarm: true,
   });
-  console.log("alarms", alarms);
+  
 
   let userEmail = await userModel
     .findOne({ _id: alarms[0].userId })
@@ -248,5 +248,6 @@ const job = schedule.scheduleJob("*/2 * * * *", function () {
   findAlarms();
   console.log("mailsent");
 });
+
 
 module.exports = { createTask, getTaskList, updateTask, deleteTask };
