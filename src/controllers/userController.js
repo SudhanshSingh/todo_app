@@ -65,7 +65,7 @@ const register = async function (req, res) {
         message: "password is not in the valid formate",
       });
     let encryptPassword = await bcrypt.hash(password, saltRounds);
-    console.log(encryptPassword, "encryptPassword");
+    // console.log(encryptPassword, "encryptPassword");
 
     body["password"] = encryptPassword;
 
@@ -131,7 +131,7 @@ const login = async function (req, res) {
         .send({ status: false, message: "Enter valid email" });
 
     const data = await userModel.findOne({ email });
-    console.log(data);
+    // console.log(data);
     if (!data)
       return res
         .status(401)

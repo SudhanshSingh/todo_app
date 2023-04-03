@@ -183,7 +183,7 @@ const updateTask = async function (req, res) {
       { $set: body },
       { new: true }
     );
-    console.log(updatedData);
+    // console.log(updatedData);
     return res.status(200).send({
       status: true,
       message: "todo list successfully updated",
@@ -246,7 +246,7 @@ const findAlarms = async function (req, res) {
 };
 const job = schedule.scheduleJob("*/2 * * * *", function () {
   findAlarms();
-  console.log("mailsent");
+  // console.log("mailsent");
 });
 
 
