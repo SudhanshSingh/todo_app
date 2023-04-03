@@ -6,9 +6,10 @@ const route=require('./routes/route.js')
 
 const db=require("./config/mongoose")
 const app=express();
-// console.log(app.get('env'))
-// console.log(process.env)
+console.log(app.get('env'))
+console.log(process.env)
 app.use(bodyparser.json())
+
 app.use('/',route)
 
 
